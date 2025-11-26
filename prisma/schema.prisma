@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model VisitorLog {
+  id            String        @id @default(uuid())
+  visitorName   String
+  contactNumber String
+  hostName      String
+  purpose       String
+  apartmentNo   String
+  floor         Int
+  photoUrl      String
+  checkInTime   DateTime      @default(now())
+  checkOutTime  DateTime?
+  status        VisitorStatus @default(INSIDE)
+}
+
+enum VisitorStatus {
+  INSIDE
+  EXITED
+}
