@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Visitor Management System
+
+A modern, elegant Visitor Management System built with Next.js, Prisma, and PostgreSQL. This application allows security personnel to check in visitors, print gate passes, and track visitor history.
+
+## Features
+
+-   **Dashboard**: Real-time statistics (Visitors Inside, Today, Total, Exited).
+-   **Check-In**: Streamlined visitor registration with photo capture.
+-   **Gate Pass**: Thermal printer-friendly gate pass generation with QR code.
+-   **History**: Searchable visitor logs.
+-   **Responsive Design**: Works seamlessly on desktop and tablets.
+
+## Tech Stack
+
+-   **Framework**: Next.js 15 (App Router)
+-   **Database**: PostgreSQL
+-   **ORM**: Prisma
+-   **Styling**: Tailwind CSS
+-   **UI Components**: Shadcn/UI + Lucide React
+
+## Prerequisites
+
+-   Node.js (v18 or higher)
+-   PostgreSQL installed and running locally or a cloud database URL.
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/XCal1burGTR/Visitor_Management_System.git
+cd Visitor_Management_System
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install --legacy-peer-deps
+```
+
+> Note: `--legacy-peer-deps` is required due to some dependency versions.
+
+### 3. Database Setup
+
+1.  Make sure your PostgreSQL server is running.
+2.  Create a new database (e.g., `visitor_management`).
+3.  Create a `.env` file in the root directory.
+4.  Add your database connection string to `.env`:
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/visitor_management?schema=public"
+```
+
+Replace `username`, `password`, and `visitor_management` with your actual PostgreSQL credentials.
+
+### 4. Run Migrations
+
+Push the database schema to your PostgreSQL instance:
+
+```bash
+npx prisma db push
+```
+
+### 5. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.  **Check In**: Click the "+" button to register a new visitor. Take a photo and fill in details.
+2.  **Print Pass**: After check-in, expand the visitor card on the dashboard and click "Print Pass" to generate a thermal gate pass.
+3.  **Check Out**: When the visitor leaves, click "Check Out" on their card.
